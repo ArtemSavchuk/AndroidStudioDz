@@ -1,23 +1,14 @@
 package com.example.currencyratesapp
 
-import android.os.Bundle
-import android.widget.Toast
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.observe
-import androidx.compose.ui.Alignment
+import com.example.currencyratesapp.item.ExchangeRate
 
 @Composable
-fun CurrencyItem(rate: CurrencyRate) {
+fun CurrencyItem(rate: ExchangeRate) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -31,12 +22,12 @@ fun CurrencyItem(rate: CurrencyRate) {
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Column {
-                Text(text = "Currency: ${rate.ccy}")
-                Text(text = "Base: ${rate.base_ccy}")
+                Text(text = "Currency: ${rate.currency}")
+                Text(text = "Base: ${rate.baseCurrency}")
             }
             Column {
-                Text(text = "Buy: ${rate.buy}")
-                Text(text = "Sale: ${rate.sale}")
+                Text(text = "Buy: ${rate.purchaseRate ?: rate.purchaseRateNB}")
+                Text(text = "Sale: ${rate.saleRate ?: rate.saleRateNB}")
             }
         }
     }
